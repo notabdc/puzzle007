@@ -1,0 +1,455 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title>点灯</title>
+<base target="_self">
+<style type="text/css">
+<!--
+-->
+</style>
+<link href="../CSS/Normal.css" rel="stylesheet" type="text/css">
+</head>
+
+<body bgcolor="#FFD39C">
+
+<p>也有叫“地板游戏”的。</p>
+<p><a href="../CnSoft/Floor.exe">张历卓的游戏和求解程序</a></p>
+<p>&nbsp;</p>
+<p>mathe的数学解答，转载自<a href="http://blog.csdn.net/mathe/archive/2006/08/30/1143634.aspx" target="_blank">mathe的BLOG</a>（文字上有小修改，后半部分略去。）</p>
+<p>有一个5*6的灯泡构成的矩阵，灯的开关规则是这样：当改变某盏灯的状态时，这盏灯的上下左右相邻的灯的状态也随之改变。例如：<BR>
+  0 1 1 0 1   0<BR>
+  1 0 0 1 1 1<BR>
+  0 0 1 0 0 1<BR>
+  1 0 0 1 0 1<BR>
+0 1 1 1 0 0</p>
+<p>当按下2行3列的开关时，状态变为：<BR>
+  0 1 0 0 1 0<BR>
+  1 1 1 0 1 1<BR>
+  0 0 0 0 0 1<BR>
+  1 0 0 1 0   1<BR>
+  0 1 1 1 0 0</p>
+<p class="NoIndent">游戏的目的是对于任意给定的亮灭初始态，通过一系列动作关闭所有的灯。<BR>
+  可以注意到的是：<BR>
+  1.按开关的顺序无关紧要。<BR>
+  2.如果某个开关按下了两次，那么就相当于取消了第一次的操作，也就是说没有开关需要按超过1次。</p>
+<p class="NoIndent">现在问题是：对于给定的初始状态，求出需要按哪些开关来完成游戏。</p>
+<p class="NoIndent">把上面的矩阵看成一个m*n的向量X=(x1,x2,...,x(m*n))。对于位置k上的开关，它将变化最多5个位置的开关，对应一个向量C(k)=(0,0,...,1,0,....,1,...,0)，其中开关状态改变的位置为1，开关状态不改变的位置为0。<BR>
+  对于初始向量X=(x1,x2,...,x(m*n)),使用了开关C(k)后，状态会变成<BR>
+X+C(k)   (mod 2)</p>
+<p class="NoIndent">所以对初始向量X,我们需要选择一系列的k1,k2,...,ks使得<BR>
+  X+C(k1)+C(k2)+....+C(ks) (mod   2)=O=(0,0,0,...,0)<BR>
+  我们可以同样构造一个0,1向量Y,使得：如果位置k出现在k1,k2,...ks中，那么Y<BR>
+  在位置k的值是1，不然是0。这样，我们就可以将上面公式写成矩阵形式<BR>
+  X+Y*C   (mod 2)=O<BR>
+  其中C=(C(1)' C(2)' ....   C(m*n)')'<BR>
+  也就是C是由m*n个行向量构成的矩阵，第k行就是向量C(k)。<BR>
+  在二阶域上，加和减是相同的，也就是上面的方程等价于<BR>
+  Y*C   (mod 2)=X<BR>
+  其中C,X已知，求Y。<BR>
+  由于(mod 2)运算是一个域 （关于乘除加减封闭，加减是mod   2加减，还满足结合率，交换率），所以我们可以直接在二阶域上用高斯消元法求解（注意加减是mod   2的，对应计算机上的异或运算）。<BR>
+  其中，如果C可逆，解是唯一的，如果C不可逆，解可能不存在，也可能不唯一。</p>
+<p><span class="NoIndent">可以使用追逐法求解,时间复杂度可以只有O(n^3)。<BR>
+下面贴出的程序的时间复杂度为O(n^4),这是因为其中同稀疏矩阵的乘法没有优化.</span></p>
+<p>#include &lt;stdio.h&gt;<br>
+#include &lt;stdlib.h&gt;</p>
+<p>typedef char ** MATRIX;<br>
+  typedef char * VECTOR;<br>
+  typedef const char ** CONST_MATRIX;<br>
+  typedef const char * CONST_VECTOR;</p>
+<p>MATRIX matrix_alloc(int n){<br>
+  MATRIX x = (MATRIX)malloc(sizeof(char *)*n+sizeof(char)*n*n);<br>
+  int i; <br>
+  x[0]=(char *)(x+n); <br>
+  for(i=1;i &lt;n;i++)x[i]=x[i-1]+n;<br>
+  return x; <br>
+  }</p>
+<p>void matrix_free(MATRIX x){<br>
+  free(x);<br>
+  }</p>
+<p>VECTOR vector_alloc(int n){<br>
+  VECTOR x = (VECTOR)malloc(sizeof(char)*n);<br>
+  return x; <br>
+  }</p>
+<p>void vector_free(VECTOR x){<br>
+  free(x);<br>
+  }</p>
+<p>void matrix_sum(MATRIX A, CONST_MATRIX B, int n){<br>
+  int i,j;<br>
+  for(i=0;i &lt;n;i++){<br>
+  for(j=0;j &lt;n;j++){<br>
+  A[i][j] ^= B[i][j]; <br>
+  } <br>
+  } <br>
+  }</p>
+<p>void vector_sum(VECTOR a, CONST_VECTOR b, int n){<br>
+  int i;<br>
+  for(i=0;i &lt;n;i++)a[i]^=b[i];<br>
+  }</p>
+<p>void matrix_mul(MATRIX out, CONST_MATRIX in1, CONST_MATRIX in2, int n){<br>
+  int i,j,k;<br>
+  for(i=0;i &lt;n;i++)for(j=0;j&lt;n;j++){<br>
+  int sum=0; <br>
+  for(k=0;k &lt;n;k++){<br>
+  if(in1[i][k]) <br>
+  sum^=in2[k][j]; <br>
+  } <br>
+  out[i][j]=sum; <br>
+  } <br>
+  }</p>
+<p>void matrix_mul_vector(VECTOR out, CONST_MATRIX m, CONST_VECTOR in, int n){<br>
+  int i,j;<br>
+  for(i=0;i &lt;n;i++){<br>
+  int sum=0; <br>
+  for(j=0;j &lt;n;j++){<br>
+  sum^=m[i][j] &amp;in[j];<br>
+  } <br>
+  out[i]=sum; <br>
+  } <br>
+  }</p>
+<p>void vector_init_const(VECTOR v, char c, int n){<br>
+  int i;<br>
+  for(i=0;i &lt;n;i++)v[i]=c;<br>
+  }</p>
+<p>void matrix_init_O(MATRIX o, int n){<br>
+  int i,j;<br>
+  for(i=0;i &lt;n;i++)for(j=0;j&lt;n;j++)o[i][j]=0;<br>
+  }</p>
+<p>void matrix_init_const(MATRIX m, char c, int n){<br>
+  int i,j;<br>
+  for(i=0;i &lt;n;i++)for(j=0;j&lt;n;j++)m[i][j]=c;<br>
+  }</p>
+<p>void matrix_init_E(MATRIX e, int n){<br>
+  int j;<br>
+  matrix_init_O(e,n); <br>
+  for(j=0;j &lt;n;j++)e[j][j]=1;<br>
+  }</p>
+<p>void matrix_init_H(MATRIX h, int n){<br>
+  int i;<br>
+  matrix_init_O(h,n); <br>
+  for(i=0;i &lt;n;i++){<br>
+  if(i &gt;=1)h[i][i-1]=1;<br>
+  h[i][i]=1; <br>
+  if(i &lt;n-1)h[i][i+1]=1;<br>
+  } <br>
+  }</p>
+<p>void matrix_copy(MATRIX m, CONST_MATRIX k, int n){<br>
+  int i,j;<br>
+  for(i=0;i &lt;n;i++)for(j=0;j&lt;n;j++)m[i][j]=k[i][j];<br>
+  }</p>
+<p>void vector_copy(VECTOR v, CONST_VECTOR w, int n){<br>
+  int i;<br>
+  for(i=0;i &lt;n;i++)v[i]=w[i];<br>
+  }</p>
+<p>void matrix_output(CONST_MATRIX m, int n){<br>
+  int i,j;<br>
+  for(i=0;i &lt;n;i++){<br>
+  for(j=0;j &lt;n;j++){<br>
+  printf( &quot;%d&quot;,m[i][j]);<br>
+  } <br>
+  printf( &quot;\n&quot;);<br>
+  } <br>
+  }<br>
+  void vector_output(VECTOR v, int n){<br>
+  int i; <br>
+  for(i=0;i &lt;n;i++)printf(&quot;%d&quot;,v[i]);<br>
+  printf( &quot;\n&quot;);<br>
+  }</p>
+<p>void Usage(const char *program_name){<br>
+  printf(&quot;Usage:\n&quot;);<br>
+  printf( &quot;\t$%s n\n&quot;,program_name);<br>
+  printf( &quot;\t\twhere n is a positive integer no more than 1000\n&quot;);<br>
+  printf( &quot;Or\n&quot;);<br>
+  printf( &quot;\t$%s [0|1]* [0|1]* ... [0|1]*\n&quot;, program_name);<br>
+  printf( &quot;\t\tIn this format, there're n strings of 0 and 1 and length of each string is n too\n&quot;);<br>
+  printf( &quot;The program assumes there're an n*n array. Each cell in the array has a switch &quot;<br>
+  &quot;and a light. On touches of the switch in a cell will changes the state of the &quot;<br>
+  &quot;light in the cell as well as the lights in the neighbors of the cell, so that &quot;<br>
+  &quot;one switch could change states of 5 lights at most\n&quot;);<br>
+  printf( &quot;The program will try to find a solution to turn all lights off\n&quot;);<br>
+  printf( &quot;The first format of input gives an initial n*n array with all lights on\n&quot;);<br>
+  printf( &quot;The second format requires n strings of 0 and 1, and the length of each string&quot;<br>
+  &quot; is n too. Each string is correspondent to state of lights in one line of the &quot;<br>
+  &quot;array. A digit 0 means the correspondent light is off and 1 means the light is &quot;<br>
+  &quot;on.\n&quot;);<br>
+  printf( &quot;The program will output an n*n matrix of 0 and 1 when there's a solution which &quot;<br>
+  &quot;tells whether we need to touch a switch to turn off all the lights\nOr the &quot;<br>
+  &quot;program will output \&quot;NO SOLUTION\&quot; when there's no solution\n&quot;);<br>
+  exit(-1); <br>
+  }</p>
+<p>MATRIX P0,P1,H;<br>
+  VECTOR ME;<br>
+  MATRIX init;</p>
+<p>//First we need to solve equation P*X(n) = ME;<br>
+  //There could be multiple solutions<br>
+  //For each solution X(n), try<br>
+  //X(n-1) = INIT+ H*X(n);<br>
+  //X(K)?= INIT + H*X(k+1)+X(k+2);//for k&lt;n-1<br>
+  void Solve(MATRIX P, VECTOR ME, int n)<br>
+  {<br>
+  int *freedom_index; <br>
+  int freedom_count=0; <br>
+  int i,j,k; <br>
+  int failed=0; <br>
+  freedom_index = (int *)malloc(sizeof(int)*n); <br>
+  //First solve equition P*X(n) = ME <br>
+  for(i=0;i &lt;n;i++){<br>
+  for(j=i;j &lt;n;j++)if(P[j][i]==1)break;<br>
+  if(j==n){ <br>
+  //find a freedom factor <br>
+  if(ME[i]!=0){ <br>
+  failed=1;//No solution, does not return since I want find out the freedom factor <br>
+  } <br>
+  freedom_index[freedom_count++]=i; <br>
+  }else{ <br>
+  if(j!=i){ <br>
+  //Swap line j and i <br>
+  int temp; <br>
+  for(k=i;k &lt;n;k++){<br>
+  temp=P[i][k]; <br>
+  P[i][k]=P[j][k]; <br>
+  P[j][k]=temp; <br>
+  } <br>
+  temp = ME[i]; <br>
+  ME[i] = ME[j]; <br>
+  ME[j] = temp; <br>
+  } <br>
+  for(j=0;j &lt;n;j++){<br>
+  if(j!=i &amp;&amp;P[j][i]){<br>
+  //If P[j][i] is 1, add Line i into Line j <br>
+  for(k=i;k &lt;n;k++){<br>
+  P[j][k]^=P[i][k]; <br>
+  } <br>
+  ME[j]^=ME[i]; <br>
+  } <br>
+  } <br>
+  } <br>
+  } <br>
+  fprintf(stderr, &quot;Freedom factor = %d\n&quot;, freedom_count);<br>
+  if(failed){ <br>
+  printf( &quot;NO SOLUTION\n&quot;);<br>
+  free(freedom_index); <br>
+  return; <br>
+  } <br>
+  //Now ME hold's one solution for X[n], <br>
+  //And random reset index inside freedom_index of ME to 0, 1 <br>
+  //?will result in another solution for X[n]; <br>
+  //Output one solution <br>
+  { <br>
+  VECTOR *x; <br>
+  x=(VECTOR *)malloc(sizeof(VECTOR)*n); <br>
+  for(i=0;i &lt;n;i++)x[i]=vector_alloc(n);<br>
+  vector_copy(x[n-1],ME,n); <br>
+  matrix_mul_vector(x[n-2],H,x[n-1],n); <br>
+  vector_sum(x[n-2],init[n-1],n); <br>
+  for(k=n-3;k &gt;=0;k--){<br>
+  matrix_mul_vector(x[k],H,x[k+1],n); <br>
+  vector_sum(x[k],init[k+1],n); <br>
+  vector_sum(x[k],x[k+2],n); <br>
+  } <br>
+  matrix_output(x,n); <br>
+  for(i=0;i &lt;n;i++)vector_free(x[i]);<br>
+  free(x); <br>
+  } <br>
+  free(freedom_index); <br>
+  }<br>
+  int parse(int argc, char **argv){<br>
+  if(argc == 2){ <br>
+  int n = atoi(argv[1]); <br>
+  if(n &lt;0||n&gt;1000){<br>
+  Usage(argv[0]); <br>
+  }else if(n &lt;=1){<br>
+  printf( &quot;%d\n&quot;,n);<br>
+  exit(0); <br>
+  }else{ <br>
+  init=matrix_alloc(n); <br>
+  matrix_init_const(init,1,n); <br>
+  return n; <br>
+  } <br>
+  }else{ <br>
+  int n=argc-1; <br>
+  int i,j; <br>
+  init=matrix_alloc(n); <br>
+  for(i=0;i &lt;n;i++){<br>
+  char *s=argv[i+1]; <br>
+  if(strlen(s)!=n){ <br>
+  matrix_free(init); <br>
+  Usage(argv[0]); <br>
+  } <br>
+  for(j=0;j &lt;n;j++){<br>
+  if(s[j]!='0' &amp;&amp;s[j]!='1'){<br>
+  matrix_free(init); <br>
+  Usage(argv[0]); <br>
+  } <br>
+  init[i][j]=s[j]-'0'; <br>
+  } <br>
+  } <br>
+  return n; <br>
+  } <br>
+  }</p>
+<p>int main(int argc, char **argv){<br>
+  int n;<br>
+  int i; <br>
+  MATRIX temp_matrix; <br>
+  VECTOR temp_vector; <br>
+  if(argc &lt;2){<br>
+  Usage(argv[0]); <br>
+  } <br>
+  n=parse(argc,argv); <br>
+  #ifdef DEBUG<br>
+  printf( &quot;Input:\n&quot;);<br>
+  matrix_output(init,n); <br>
+  #endif<br>
+  ME = vector_alloc(n); <br>
+  temp_vector = vector_alloc(n); </p>
+<p> P0 = matrix_alloc(n);<br>
+  P1 = matrix_alloc(n);<br>
+  H= matrix_alloc(n); <br>
+  temp_matrix = matrix_alloc(n); <br>
+  matrix_init_H(H,n); <br>
+  matrix_init_E(P0,n); <br>
+  matrix_init_H(P1,n); <br>
+  #ifdef DEBUG<br>
+  printf( &quot;P(0):\n&quot;);matrix_output(P0,n);<br>
+  printf( &quot;P(1):\n&quot;);matrix_output(P1,n);<br>
+  #endif</p>
+<p> matrix_mul_vector(ME, P0, init[0], n);<br>
+  matrix_mul_vector(temp_vector, P1, init[1], n);<br>
+  #ifdef DEBUG<br>
+  printf( &quot;M(0):&quot;);vector_output(ME,n);printf(&quot;\n&quot;);<br>
+  printf( &quot;M(1):&quot;);vector_output(temp_vector,n);printf(&quot;\n&quot;);<br>
+  #endif<br>
+  vector_sum(ME,temp_vector,n); <br>
+  #ifdef DEBUG<br>
+  printf( &quot;S(1):&quot;);vector_output(ME,n);printf(&quot;\n&quot;);<br>
+  #endif</p>
+<p> for(i=2;i&lt;=n;i++){<br>
+  matrix_mul(temp_matrix,H,P1,n);<br>
+  matrix_sum(temp_matrix,P0,n);//P(k)= H*P(k-1) + P(k-2) <br>
+  matrix_copy(P0,P1,n); <br>
+  matrix_copy(P1,temp_matrix,n); <br>
+  #ifdef DEBUG<br>
+  printf( &quot;P(%d):\n&quot;,i);matrix_output(P1,n);<br>
+  #endif<br>
+  if(i &lt;n){<br>
+  matrix_mul_vector(temp_vector, P1, init[i], n); <br>
+  vector_sum(ME,temp_vector,n); <br>
+  #ifdef DEBUG<br>
+  printf( &quot;M(%d):&quot;,i);vector_output(temp_vector,n);printf(&quot;\n&quot;);<br>
+  printf( &quot;S(%d):&quot;,i);vector_output(ME,n);printf(&quot;\n&quot;);<br>
+  #endif<br>
+  } <br>
+  } </p>
+<p> Solve(P1, ME, n);</p>
+<p> matrix_free(init);<br>
+  vector_free(ME);<br>
+  vector_free(temp_vector);<br>
+  matrix_free(P0);<br>
+  matrix_free(P1);<br>
+  matrix_free(H);<br>
+  matrix_free(temp_matrix);<br>
+  return 0;<br>
+  }<br>
+</p>
+<p>  在网络上,我还找到一个俄国人的一个证明:如果开始所有的灯都是开的,那么必然存在一种方案将所有的灯关闭.这个证明用到代数知识,只是所用定理应该是应用在实数域上的,运用在有限域上不知道是否正确:<BR>
+</p>
+<p>Puzzle 2: for this problem, we are giving up the detailed information about   how the lights are connected. We are left knowing only that the connections are   reflexive and symmetric, and that our task is to go from all lights ON to all   lights OFF. Lossers gives a short explanation of how to see that this is so.   First, we define the obvious matrix A with 1's indicating which switches control   which lights. The matrix is symmetric and has 1's on its diagonal. </p>
+<p>Now it's equivalent to show that there is some strategy x of button pushing   that can go from all lights OFF to all lights ON. But that's just asking if   there is a vector x such that </p>
+<p>A * x = d, <BR>
+  where d is the vector of all 1's. That is equivalent to asking   if d is in the column space of A. And that is equivalent to asking if the   "perpendicular space" of A' is contained in the "perpendicular space" of d. In   other words, it is enough to show that A'*x=0 implies d'*x=0. </p>
+<p>So let x be any vector in the perpendicular space of A'. Then </p>
+<p>Sum (1 &lt;= i &lt;= N) xi * Ai,j = 0 <BR>
+  for all j. This implies <BR>
+  Sum ( 1   &lt;= j &lt;= N ) Sum (1 &lt;= i &lt;= N) xi * Ai,j * xj = 0, </p>
+<p>Now we know that A is symmetric (assumption 2). Therefore, in the preceding   sum, let us consider, for distinct i and j every pair of terms </p>
+<p>xi * Ai,j * xj + xj * Aj,i * xi = <BR>
+  ( Ai,j + Aj,i ) * xi * xj = <BR>
+  2 *   Ai,j * xi * xj = 0 <BR>
+  because we are working in arithmetic module 2! Therefore,   all the offdiagonal terms pair up and drop out. </p>
+<p>Our sum now only involves the diagonal terms: </p>
+<p>Sum (1 &lt;= i &lt;= N) xi2 * Ai,i = 0 <BR>
+  Now Ai,i = 1, because the   light-switch relationship is reflexive (assumption 1), and di = 1 too, so in the   sum, we can replace Ai,i by di. Moreover, we know that xi2=xi, because xi is   either 0 or 1. Therefore, we now have <BR>
+  Sum (1 &lt;= i &lt;= N) xi * di = 0 </p>
+<p>Hence x is in the perpendicular space of d. This means d is in the column   space of A, so a button strategy exists that turns a set of "off" lights all   "on", and the same strategy will turn a set of "on" lights all "off". </p>
+<p>关于这个问题,很早以前还有一种算法,将整个矩阵看成一个向量,那么M=N*N的灯就要解一个M*M线性方程组,算法复杂度要大很多:（后略。）<BR>
+  　</p>
+<p>老侃的搜索法解答，转载自<a target="_blank" href="http://skyfire.dns0755.net/newweb/list.asp?id=349"> 老侃第一站</a></p>
+<p style="line-height: 150%"><font class="b1">点灯游戏<br>
+&nbsp;&nbsp;&nbsp; 
+简介：游戏场景是一个10*10共100个方格的网格，每一个方格代表一盏灯，在改变某一盏灯的状态时会同时改变相邻上下左右的四盏灯的状态。初始时100盏灯都是熄灭状态，要求通过一定的操作将所有的灯都打开。<br>
+&nbsp;&nbsp;&nbsp; 
+分析：由于每盏灯与其上下左右的灯关联，所以只能一部分“主动”点亮，另一部分“被动”点亮，一次点灯操作相当于对五个网格值逻辑取反，两次取反会回到原值，所以，那些必须“主动”点亮的灯只需点亮一次，不必考虑点多次的情况。逻辑反运算满足交换律，所以游戏过程和点灯的次序无关。可以按照某个特定次序(比如从左到右，从上到下)来试探某盏灯是否应该点亮。这里，点某一盏灯时不能灭掉上方已经点亮的灯，因为按照这种试探方法，<br>
+已经不可能再将那盏灯点亮了。而如果正在试探的灯左上方的灯已经是灭的，那么以后无论如何都不能点亮那盏灯。遇到这些情况应进行回溯。<br>
+　</font></p>
+<p><font class="b1">#include &lt;stdio.h&gt;<br>
+#include &lt;string.h&gt;const long&nbsp; SIZE=10;<br>
+char&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Lamp[SIZE + 2][SIZE + 2];&nbsp;&nbsp; //四周各有一格是边界<br>
+long&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; StepX[SIZE * SIZE], StepY[SIZE * SIZE];<br>
+long&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Step;//点灯，对五个网格值取反，左上角是(1,1)<br>
+inline void LampSw(long x, long y)<br>
+{<br>
+&nbsp;&nbsp;&nbsp; Lamp[x][y]=!Lamp[x][y];<br>
+&nbsp;&nbsp;&nbsp; Lamp[x + 1][y]=!Lamp[x + 1][y];<br>
+&nbsp;&nbsp;&nbsp; Lamp[x - 1][y]=!Lamp[x - 1][y];<br>
+&nbsp;&nbsp;&nbsp; Lamp[x][y + 1]=!Lamp[x][y + 1];<br>
+&nbsp;&nbsp;&nbsp; Lamp[x][y - 1]=!Lamp[x][y - 1];<br>
+}/*<br>
+检查状态，是否已完成<br>
+*/<br>
+bool CheckOK(void)<br>
+{<br>
+&nbsp;&nbsp;&nbsp; for(long y=1; y &lt;= SIZE; y++)<br>
+&nbsp;&nbsp;&nbsp; {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; for(long x=1; x &lt;= SIZE; x++)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if(Lamp[x][y] == 0)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return false;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; return true;<br>
+}//试探，回溯，左上角是(1,1)<br>
+void Try(long x, long y)<br>
+{<br>
+&nbsp;&nbsp;&nbsp; long&nbsp;&nbsp;&nbsp; xx, yy;&nbsp;&nbsp;&nbsp; LampSw(x, y);<br>
+&nbsp;&nbsp;&nbsp; StepX[Step]=x;<br>
+&nbsp;&nbsp;&nbsp; StepY[Step]=y;<br>
+&nbsp;&nbsp;&nbsp; Step++;<br>
+&nbsp;&nbsp;&nbsp; if(CheckOK())<br>
+&nbsp;&nbsp;&nbsp; {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; printf(&quot; - OK. Total %ld steps.\n&quot;,Step);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; for(long i=0;i&lt;Step;i++)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; printf(&quot;%2d. (%2d,%2d)\n&quot;,i+1, StepX[i],StepY[i]);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; else<br>
+&nbsp;&nbsp;&nbsp; {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; for(long s=(y - 1) * SIZE + x; s &lt; SIZE * SIZE; s++)&nbsp;&nbsp; //第一个尝试点，<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; xx=s % SIZE + 1;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; yy=s / SIZE + 1;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if(Lamp[xx - 1][yy - 1] == 1 || xx == 1 || yy == 
+1)//如果左上角是1，则尝试，注意这里没有用到正上方的值做判断，我觉得没有必要<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Try(xx, yy);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; else<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; break;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; }&nbsp;&nbsp;&nbsp; LampSw(x, y);<br>
+&nbsp;&nbsp;&nbsp; Step--;<br>
+}/* */<br>
+int main(void)<br>
+{<br>
+&nbsp;&nbsp;&nbsp; memset(Lamp, 0, sizeof(Lamp));<br>
+&nbsp;&nbsp;&nbsp; Step=0;<br>
+&nbsp;&nbsp;&nbsp; Try(1, 1);<br>
+&nbsp;&nbsp;&nbsp; return 0;<br>
+}</font></p>
+</body>
+
+</html>

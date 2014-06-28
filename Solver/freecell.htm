@@ -1,0 +1,59 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title>空当接龙工具</title>
+<base target="_self">
+</head>
+
+<body bgcolor="#FFD099">
+
+<p><font color="#FF00FF"><a name="空当接龙工具">空当接龙工具2.2版：</a></font>　</p>
+<p>&nbsp;&nbsp;&nbsp; 求解任何空当接龙游戏。自动读取牌局，自动操作，批量操作，样样精通。</p>        
+<p><font color="#008000">2013.10.2: 2.2版。</font></p>
+<p><font color="#008000"> &nbsp;&nbsp;&nbsp;14年过去了。从win95，98，Me，2000，XP，windows所带的空当接龙游戏一直是一成不变的模样，空当接龙工具也一直很好的工作。但是，这一天终于还是来了，win7,win8,空当接龙游戏换肤了，工具终于跟不上时代了。在可以想见的将来，更新版的windows会带上更新的游戏。作为14年前的超级老软件，将不再追逐新外观的新游戏，而是带上经典的xp版的freecell.exe，为自己画上一个句号。<br>
+  &nbsp;&nbsp;&nbsp;本次修改内容：<br>
+&nbsp;&nbsp;&nbsp;1. 修正win7系统下崩溃的问题。<br>
+&nbsp;&nbsp;&nbsp;2. 修正win7系统下不能读取牌局的问题(指自带xp版freecell.exe)。<br>
+&nbsp;&nbsp;&nbsp;3. 自带xp版freecell.exe（可以用F3键启动）。不再继续支持新系统中新外观的空当接龙游戏。</font></p>
+<p><font color="#008000">2003.2.8: 2.1版完成。</font></p>
+<p><font color="#008000"> &nbsp;&nbsp;&nbsp; 优化了算法。以前版本对于一些特定的牌局求解很困难(前100万局中有65局)，现在都可以很快求解了。</font></p>      
+<p><font color="#008000">2002.11.30: 2.01版完成。</font></p>        
+<p><font color="#008000"> &nbsp;&nbsp;&nbsp; 调整了“随机算法”中的参数，使得能够以更大的概率求解成功。</font></p>       
+<p><font color="#008000">2002.11.15: 2.0版完成。</font></p>         
+<p><font color="#008000"> &nbsp;&nbsp;&nbsp; 因为发现WindowsXP下的空当接龙游戏的牌局号范围扩大到了1－1000000，想用工具全部求解一遍。结果发现花费在读取牌局的时间大大高于求解的时间，而且手工处理求解失败的牌局也很费时。鉴于此，增加了“直接生成牌局”的功能，“批量求解”中增加了“自动重试”的功能。<br>        
+	另一个重大改进是求解算法。新算法的速度提高了很多倍，而且克服了旧算法在搜索状态增大的情况下速度越来越慢的缺点。这样，几乎没有不能解决的牌局了。比如，只要将“选项”中“最大搜索状态数”设到120万，工具很快就能证明“-2”号牌局无解。</font></p>
+<p><font color="#008000">2002.11.10: 1.21版完成。</font></p>         
+<p><font color="#008000"> &nbsp;&nbsp;&nbsp; 最近发现WindowsXP下的空当接龙已经有了1000000局，而我的工具的“批量求解”功能还是局限于原先的最大号码32000。因此进行了小小的修改，使得“批量求解”中可以填写1000000范围内的数。<br>       
+&nbsp;&nbsp;&nbsp; 另外应一些网友的要求，增加了“从文件读取牌局并求解”的功能。编写自定义牌局的方法请参看附带的文件“自定义牌局范例.txt”中的注释。</font></p>       
+<p><font color="#008000">2001.11：1.2版完成。</font></p>         
+<p><font color="#008000">&nbsp;&nbsp;&nbsp; 非常感谢您喜欢我写的空当接龙工具。空当接龙工具1.1已经非常完美，但是一直被一个问题所困扰：无法在32位真彩色下正常工作。而且，自从空当接龙工具1.1问世之后，微软又推出了若干个版本的Windows,有些版本（比如windows2000)上的空当接龙程序与空当接龙工具配合得不是很好。因此，我下决心重新改写了空当接龙工具，使之具有很好的可扩展性。新版本(1.2版）解决了32位色模式下的牌局获取问题，与所有现有的中文windows（95,98,2000,Me,不包括3.1和NT4.0）中的空当接龙游戏配合良好。</font></p>                
+<p><a href="../CnSoft/FreecellTool_22.zip">下载空当接龙工具2.2</a></p>
+<p><a href="../CnSoft/freecelltool_21.zip">下载空当接龙工具2.1</a>&nbsp; </p>
+<p>注册请到这里：<a target="_blank" href="http://www.softreg.com/shareware_view.asp?id={0EBD7328-C5FE-40F3-957A-984E2295214E}&func=author">http://www.softreg.com/shareware_view.asp?id={0EBD7328-C5FE-40F3-957A-984E2295214E}&amp;func=author</a> </p> 
+<p>　</p>
+<p>参考文章</p>
+<p><a target="solver_main" href="../Program/MakeFreecell.htm">《空当接龙工具是怎样炼成</a><a href="../Program/MakeFreecell.htm">的》</a></p>
+<p>　</p>
+<p>相关链接：</p>
+<p>
+<a target="_blank" href="http://vipe.technion.ac.il/~shlomif/freecell-solver/">
+Shlomi Fish的空当接龙研究主页</a>&nbsp;&nbsp;&nbsp; 收集了和空当接龙相关的丰富的链接。包括很多求解程序。（英文）</p>
+<p><a target="_blank" href="http://home.earthlink.net/~fomalhaut/fcfaq.html">
+Freecell FAQ</a>&nbsp;&nbsp;&nbsp; 
+很多稀奇古怪的问题的答案。比如：导致游戏失败，最少需要多少张牌？如果空当减少到3个，有多少牌局会无解？（英文）</p>
+<p>　</p>
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-44630455-1', 'sina.com');
+  ga('send', 'pageview');
+
+</script>
+</body>
+
+</html>

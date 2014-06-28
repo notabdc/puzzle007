@@ -1,0 +1,8 @@
+.Normal {
+	text-indent: 2em;
+	line-height: 150%;
+}
+.NoIndent {
+	text-indent: 0px;
+	line-height: 150%;
+}

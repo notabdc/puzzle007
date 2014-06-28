@@ -1,0 +1,29 @@
+How to Register
+=======
+	Please visit https://www.qwerks.com/order/buynow.asp?ProductID=5392 for online registration.
+	The registration fee for AutoSweeper is $9.95 US.
+
+	Your register code will be applicable for all versions of AutoSweeper including its upgrade in the future. 
+	
+A SPECIAL register method:
+=======
+	You may get register code through this way: upload this package (AutoSweeepr.zip) to a popular download site, and then tell author URL of the download link by E-mail. If this is a new site in author's record, you can get registered without fee!
+	Notice: the author has the right to define what's a popular download site, for example, the author insists that a popular download site should has at least 2000 software.
+
+Contact the author:
+=======
+	If you have any question, feel free to contact the author:
+	Author: GeYong
+	Email: sweeper@ynmail.com or notabdc@hotmail.com
+	Homepage: notabdc.vip.sina.com
+
+License
+=======
+	AutoSweeper is shareware. This means:
+	- The author-GeYong, exclusively owns all copyrights to AutoSweeper.
+	- Once registered, the user is granted a non-exclusive license to use AutoSweeper on one computer (i.e. a single CPU) at a time.
+	- The AutoSweeper unregistered shareware version may be freely distributed, provided the distribution package is not modified. No person or company may charge a fee for the distribution of AutoSweeper without written permission from the copyright holder. 
+	- AutoSweeper IS DISTRIBUTED "AS IS". NO WARRANTY OF ANY KIND IS EXPRESSED OR IMPLIED. YOU USE THIS SOFTWARE AT YOUR OWN RISK. THE AUTHOR WILL NOT BE LIABLE FOR DATA LOSS, DAMAGES, LOSS OF PROFITS OR ANY OTHER KIND OF LOSS WHILE USING OR MISUSING THIS SOFTWARE.
+	- You may not use, copy, emulate, clone, rent, lease, sell, modify, decompile, disassemble, otherwise reverse engineer, or transfer the licensed program, or any subset of the licensed program, except as provided for in this agreement. Any such unauthorized use shall result in immediate and automatic termination of this license and may result in criminal and/or civil prosecution. GeYong reserves all rights not expressly granted here.
+	- Installing and using AutoSweeper signifies acceptance of the terms and conditions of this license.
+	If you do not agree with the terms of this license you must remove AutoSweeper files from your storage devices and cease to use the product.

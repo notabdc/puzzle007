@@ -1,0 +1,198 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="en-us">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<title>Solvers</title>
+<style type="text/css">
+<!--
+.STYLE3 {
+	font-size: x-small;
+	color: 1;
+}
+.STYLE12 {font-size: smaller}
+.STYLE13 {font-size: small}
+.STYLE14 {
+	font-size: larger;
+	color: 1;
+}
+-->
+</style>
+<link href="../CSS/Normal.css" rel="stylesheet" type="text/css">
+<style type="text/css">
+<!--
+.STYLE15 {color: #008000}
+-->
+</style>
+</head>
+
+<body bgcolor="#FFD39C">
+
+<p align="center"><a href="#BoxSearch">BoxSearch</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="#FreecellTool">FreecellTool</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="#AutoSweeper">AutoSweeper</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="#PolariumSolver">PolariumSolver</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="#Chinese Tool">Game solver in Chinese interface</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="#OtherLink">Other solvers and links</a></p>
+<table width="100%" border="1" cellpadding="15" id="table1">
+	<tr>
+	  <td height="812"><p align="center" class="STYLE14"><span style="margin-top: 15px"><a name="BoxSearch"></a>BoxSearch -- My Sokoban Solver</span></p>
+	    <p align="center" class="STYLE15"><a href="../Soft/BoxSearch51_beta2.exe">BoxSearch5.1beta2 (new optimizer added, see forum for detail) </a></p>
+	    <p align="center" class="STYLE15">(This program needs <a href="../Soft/Mfc71.zip">MFC7.1 library</a>, 
+        extract it to the same folder of the program)</p>
+	    <p align="center" class="STYLE15">previous version: <a href="../Soft/BoxSearch5.zip">BoxSearch5.0</a> &nbsp;&nbsp;&nbsp;&nbsp;<a href="../Soft/BoxSearch4.zip">BoxSearch4.1.3</a></p>
+	    <p align="center" class="STYLE15">lastest test/unstable version: <a href="http://groups.google.com/group/BoxSearch/files" target="_blank">BoxSearch6-pre-alpha2</a></p>
+	    <table width="36%" height="399" border="0" align="right">
+          <tr align="left">
+            <td class="STYLE15"><div align="right"><img src="../Soft/BoxSearch.gif" width="251" height="368" border="0" align="right"></div></td>
+          </tr>
+        </table>
+	    <p align="center" class="STYLE15"><strong>Features</strong></p>
+	    <ul class="STYLE15">
+	      <li class="NoIndent">Very quick, Especially for smaller levels. </li>
+	      <li class="NoIndent">Handles large levels well. No limitation for box numbers. </li>
+	      <li class="NoIndent"> 4 solve mode: quick, best 
+	        push, best push with best move, best move with best push.</li>
+	      <li class="NoIndent">Answer optimization!</li>
+	      <li class="NoIndent">Run as &quot;plugin mode&quot; -- called by other sokoban game. </li>
+        </ul>
+	    <p align="center" class="STYLE15"><strong>About &quot;plugin mode&quot; </strong></p>
+	    <p class="Normal">From version 5.0, BoxSearch support &quot;plugin mode&quot;, which meas that you can run BoxSearch as a solver plugin from other application such as Sokoban++. To run BoxSearch as plugin, download the package (plugin dll inside) and follow the instructions of your sokoban program.</p>
+	    <p class="Normal">To sokoban game developers: you need both BoxSearch5 executable and plugin dll to call BoxSearch solver, and they should be put in same folder. The plugin dll follows &quot;Solver SDK&quot; made by Joris Wit, author of Sokoban++. Visit <a href="http://www.joriswit.nl/sokoban/" target="_blank">http://www.joriswit.nl/sokoban/</a> for the SDK. </p>
+	    <p class="Normal">These sokoban games support solver plugin:</p>
+	    <ul class="STYLE15">
+	      <li class="NoIndent"><a href="http://sourceforge.net/projects/sokobanyasc" target="_blank" align="left">Sokoban YASC </a></li>
+	      <li class="NoIndent"><a href="http://www.joriswit.nl/sokoban" target="_blank" align="left"> Sokoban++</a></li>
+        </ul>
+	    <p align="center" class="STYLE15"><strong>My sokoban links:</strong></p>
+	    <table width="100%" border="0" cellspacing="10">
+          <tr>
+            <td width="39%" class="STYLE15"><span class="STYLE12"><span class="STYLE13"><a target="_blank" href="http://www.erimsever.com/sokoban.htm">erim sever's 
+	      sokoban information collection</a></span></span></td>
+            <td width="61%" class="STYLE15"><span class="STYLE12"><span class="STYLE13">With well arranged links, you can 
+	      find everything about sokoban here.</span></span></td>
+          </tr>
+          <tr>
+            <td class="STYLE15"><a href="http://sokobanwiki.pytalhost.de" target="_blank">Sokoban Wiki</a> </td>
+            <td class="STYLE15">There is a good page &quot;Sokoban program   feature comparison&quot;.</td>
+          </tr>
+          <tr>
+            <td class="STYLE15"><span class="STYLE13"><a target="_blank" href="http://www.ic-net.or.jp/home/takaken/so/soko/index.html">takaken's sokoban solver</a></span></td>
+            <td class="STYLE15"><span class="STYLE13">The best sokoban solver for larger levels.</span></td>
+          </tr>
+          <tr>
+            <td class="STYLE15"><span class="STYLE13"><a href="http://www.joriswit.nl/sokoban" target="_blank" align="left">Sokoban++</a></span></td>
+            <td class="STYLE15"><span class="STYLE13">Creator of &quot;Solver SDK&quot;. </span></td>
+          </tr>
+          <tr>
+            <td class="STYLE15"><span class="STYLE13"><a href="http://sourceforge.net/projects/sokobanyasc" target="_blank" align="left">Sokoban YASC</a></span></td>
+            <td class="STYLE15"><span class="STYLE13">The best sokoban software, has many many good features. Open source. </span></td>
+          </tr>
+          <tr>
+            <td class="STYLE15"><span class="STYLE13"><a target="_blank" href="http://www.supersoko.com/">SuperSoko</a></span></td>
+            <td class="STYLE15"><span class="STYLE13">My favorite sokoban software, with many good features 
+	      and level sets.</span></td>
+          </tr>
+        </table>      </td>
+  </tr>
+	<tr>
+		<td>
+		<p align="center">
+        <h1 align="center" style="margin-top: 15px"><span style="font-weight: 400"><font size="4"><a name="FreecellTool"></a>FreecellTool: Solve any freecell game automatically!</font></span></h1>
+        <p align="center"><a href="../EngSoft/FreecellTool/FreecellTool_23.zip"> Download FreecellTool2.3</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="../EngSoft/FreecellTool/FreecellTool_21.zip">Download FreecellTool2.1</a>&nbsp;</p>
+        <table width="47%" height="281" border="0" align="right">
+          <tr>
+            <td><div align="right"><img src="../EngSoft/FreecellTool/freecelltool.gif" width="322" height="240" border="0" align="right"></div></td>
+          </tr>
+        </table>
+        <p><span class="Normal">FreecellTool is a tool to help you solve any freecell game. It automatically catches the game you are playing, solve it and show the solution. It can operate on the freecell program automatically. </span>
+        <p style="line-height: 100%">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#FF0000">v2.3 features: (2013.10) </font></p>
+        <ul class="NoIndent">
+          <li>
+            <p class="STYLE15" style="line-height: 150%">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Now work correctly on win7. No longer support new freecell game come with Win7 &amp;later, use attached freecell game from WinXP instead(Press F3).          </li>
+          </ul>
+        <p style="line-height: 100%">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#FF0000">v2.1 features: (2003.2)</font></p>
+        <ul class="NoIndent">
+          <li>
+            <p style="line-height: 150%">&nbsp;&nbsp;&nbsp;<font color="#FF0000">&nbsp;&nbsp;&nbsp;&nbsp;
+          </font><font color="#008000">Enhanced solve algorithm more than 3 times faster than old version. It will not become slower while lots of states has been searched. If you set "max search states number" in option to a large number, the tool can handle any puzzle ID. For example, It proves that "puzzle No.-2" has no answer in 5 minutes on my P4 CPU.</font></li>
+    <li>
+      <p style="line-height: 150%"><font color="#008000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        Now the tool can generate puzzle directly. The first 1,000,000 is the same as Microsoft's game. This can save a lot of time while doing batch solve. You can see what the puzzle looks like if its ID is out of Microsoft's game ID range.</font></li>
+    <li>
+      <p style="line-height: 150%"><font color="#008000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        Now support "retry" in batch solve. This will help if you want to go through a large range of game ID.</font></li>
+          </ul>
+        <p align="center"></td>
+	</tr>
+	<tr>
+		<td height="470">
+		  <h1 align="center"><span style="font-weight: 400"><font size="4"><a name="AutoSweeper"></a>AutoSweeper: Playing Minesweeper automatically!</font></span></h1>
+		  <p align="center"><a href="http://www.qwerks.com/download/5392/AutoSweeper.zip">Download
+		    link1</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="../EngSoft/AutoSweeper/AutoSweeper.zip">Download
+		      link2</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="https://www.qwerks.com/order/buynow.asp?ProductID=5392">Online
+		        Register</a> </p>
+		  <table width="56%" height="323" border="0" align="right">
+            <tr>
+              <td height="319"><img src="../EngSoft/AutoSweeper/AutoSweeper.GIF" width="392" height="317" border="0" align="right"></td>
+            </tr>
+          </table>
+		  <p class="Normal">AutoSweeper is a tool to help you playing Minesweeper. It automatically catches the game you are playing, thinking, then operate on the Minesweeper game automatically. It knows almost all the strategy that human use. </td>
+	</tr>
+	<tr>
+	  <td><h1 align="center"><span style="font-weight: 400"><font size="4"><a name="PolariumSolver" id="PolariumSolver"></a>Polarium Solver</font></span></h1>
+	    <p align="center"><a href="../Soft/PolariumSolver.zip">Polarium Solver 1.0</a> <br>
+	      <span class="STYLE3">(This program needs <a href="../Soft/Mfc71.zip">MFC7.1 library</a>, 
+        extract it to the same folder of the program)</span></p>
+	    <table width="56%" height="323" border="0" align="right">
+          <tr>
+            <td height="319"><img src="../Soft/PolariumSolver.GIF" width="334" height="414" border="0" align="right"></td>
+          </tr>
+        </table>
+      <p><span class="Normal">This tool helps you solve NDS game &quot;Polarium&quot;. </span>      </td>
+  </tr>
+	<tr>
+		<td>
+
+<h2 style="margin-top: 15px"><font color="#FF0000"><a name="Chinese Tool">Game solver in Chinese
+interface:</a></font></h2>
+
+<p><a href="../CnSoft/AutoTetris.zip">AutoTetris: play tetris automatically</a></p>
+
+<p><a href="../CnSoft/AutoJYTK15.zip">AutoJYTK: tetris with two players attack each
+other</a></p>
+
+<p><a href="../CnSoft/AutoRubiksCube15.zip">AutoRubiksCube: solve rubiks cube</a></p>
+
+<p><a href="../CnSoft/Diamond.zip">Diamond: solve Peg Solitaire</a></p>
+
+<p><a href="../CnSoft/HuaRongDaoTool.zip">HuaRongDaoTool: solve classic Chinese puzzle &quot;HuaRongDao&quot;, also known as Klotski</a></p>
+
+<p><a href="../CnSoft/SiChuanSheng.zip">SiChuanSheng: solve puzzle
+&quot;SiChuanSheng&quot;, very like &quot;Shanghai&quot;, in which you can
+remove a pair when they can connect by no more than 3 lines</a></p>
+
+<p><a href="../CnSoft/TwelveTool.zip">TwelveTool: solve classic puzzle &quot;the 12
+blocks&quot;</a></p>
+
+<p><a href="../CnSoft/Wmf20.zip">Wmf: Rubik's cube on dodecahedron</a></p>
+
+		<p></td>
+	</tr>
+	<tr>
+	  <td><h2><span style="margin-top: 15px"><font color="#FF0000"><a name="OtherLink" id="OtherLink">Other game solvers &amp; Links:</a></font></span></h2>
+      <p><a href="../EngSoft/slide50e.exe">General sliding block puzzle solver</a> &nbsp;&nbsp;&nbsp;&nbsp;Its install interface &amp; readme is in Japanese, main interface is in English. Powerful but hard to use.</p>
+      <p><a href="http://www.culand.ch/dev/SBPSolver.htm" target="_blank">SBP Solver</a> &nbsp;&nbsp;Another sliding block solver. Not powerful as previous one, but easy to use. </p>
+      <p><a href="../EngSoft/grid.zip">griddler (nonogram) solver</a> &nbsp;&nbsp;&nbsp;&nbsp;Also can be used to solve NDS game &quot;Picross&quot;. </p>
+      <p><a href="http://db.gamefaqs.com/portable/ds/file/tetris_ds_puzzle_a.txt" target="_blank">Solutions for puzzle mode of NDS game &quot;Tetris&quot; </a></p>
+      <p><a href="http://kociemba.org/cube.htm" target="_blank">CubeExplorer</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;One of the best rubik's cube solver </p></td>
+  </tr>
+</table>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-44630455-1', 'sina.com');
+  ga('send', 'pageview');
+
+</script>
+</body>
+
+</html>
