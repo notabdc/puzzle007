@@ -2,8 +2,8 @@
 
 <head>
 <meta http-equiv="Content-Language" content="zh-cn">
-<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
-<title>�����ӹ���</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>推箱子工具</title>
 <base target="_self">
 <style type="text/css">
 <!--
@@ -24,103 +24,103 @@
 
 <body bgcolor="#FFD099">
 
-<p align="left"><a name="�����ӹ���"><span lang="en-us"><font color="#FF00FF">BoxSearch</font></span></a></p>
+<p align="left"><a name="推箱子工具"><span lang="en-us"><font color="#FF00FF">BoxSearch</font></span></a></p>
 <p align="left">&nbsp;&nbsp;&nbsp; 
-���ֿⷬ�������ӣ���Ϸ��</p>
+求解仓库番（推箱子）游戏。</p>
 <ul>
-  <li class="NoIndent">�ٶȷɿ졣����С�͵Ĺؿ�������ٶȺͳɹ��ʻ����Ѿ��ﵽ�����һ�˰ɡ������͹ؿ�Ҳ�ܺܺô�����û�����Ӹ������ơ�</li>
-  <li class="NoIndent">�����Ž⣨�����ƶ��������ƶ������ܡ�</li>
-  <li class="NoIndent">����Ż����ܣ�</li>
-  <li class="NoIndent">֧�ֲ��ģʽ���У����Ա�������������Ϸ�ܷ���ص��á�</li>
+  <li class="NoIndent">速度飞快。对于小型的关卡，求解速度和成功率或许已经达到世界第一了吧。大中型关卡也能很好处理，没有箱子个数限制。</li>
+  <li class="NoIndent">求最优解（最少推动、最少移动）功能。</li>
+  <li class="NoIndent">解答优化功能！</li>
+  <li class="NoIndent">支持插件模式运行，可以被其他推箱子游戏很方便地调用。</li>
 </ul>
-<p align="left" class="STYLE3">����</p>
-<p align="left"><a href="../Soft/BoxSearch51_beta2.exe"><strong>BoxSearch 5.1 beta2��</strong></a> �������µĽ���Ż��㷨��Ч��������ǿ��</p>
-<p align="left"><font color="#FF0000">���д˳�����Ҫ</font><a href="../Soft/Mfc71.zip">MFC7.1��</a>�����غ��ѹ������������Ŀ¼���ɡ�</p>
-<p align="left">���²���/Ԥ����</p>
+<p align="left" class="STYLE3">下载</p>
+<p align="left"><a href="../Soft/BoxSearch51_beta2.exe"><strong>BoxSearch 5.1 beta2版</strong></a> 增加了新的解答优化算法，效果显著增强！</p>
+<p align="left"><font color="#FF0000">运行此程序需要</font><a href="../Soft/Mfc71.zip">MFC7.1库</a>，下载后解压缩到程序所在目录即可。</p>
+<p align="left">最新测试/预览版</p>
 <p align="left"><a href="http://groups.google.com/group/BoxSearch/files" target="_blank">BoxSearch6-pre-alpha2</a></p>
-<p align="left">����İ汾</p>
-<p align="left"><font color="#008000"><a href="../Soft/BoxSearch5.zip">BoxSearch 5.0��</a></font></p>
-<p align="left"><a href="../Soft/BoxSearch4.zip"><span lang="en-us">BoxSearch </span>4.1.<span lang="en-us">3��</span></a>&nbsp;&nbsp;</p>
+<p align="left">更早的版本</p>
+<p align="left"><font color="#008000"><a href="../Soft/BoxSearch5.zip">BoxSearch 5.0版</a></font></p>
+<p align="left"><a href="../Soft/BoxSearch4.zip"><span lang="en-us">BoxSearch </span>4.1.<span lang="en-us">3版</span></a>&nbsp;&nbsp;</p>
 <p align="left">&nbsp;</p>
-<p align="left" class="STYLE3">���ڡ����ģʽ��</p>
-<p align="left" class="Normal">5.0����֧�֡����ģʽ����Ҳ����˵���Ա����������������㷨��Ҫʹ�ô˹��ܵĻ��������س���͡����ģʽDLL�������ڷ�����ѹ�����У���Ȼ����ݾ������Ϸ�����˵��������</p>
-<p align="left" class="Normal">����Ϸ�����ߣ�Ҫ����BoxSearch������㷨����ͬʱ��ҪBoxSearch��ִ���ļ��Ͳ��DLL�����߱��������ͬĿ¼�¡����DLL��ѭSokoban++��&quot;Solver SDK&quot;�����Դ� <a href="http://www.joriswit.nl/sokoban/" target="_blank">http://www.joriswit.nl/sokoban/</a> ���ء�</p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;֧�ֲ��ģʽ����Ϸ�У�</p>
+<p align="left" class="STYLE3">关于“插件模式”</p>
+<p align="left" class="Normal">5.0版起支持“插件模式”，也就是说可以被其他程序调用求解算法。要使用此功能的话请先下载程序和“插件模式DLL”（都在发布的压缩包中），然后根据具体的游戏程序的说明操作。</p>
+<p align="left" class="Normal">致游戏开发者：要调用BoxSearch的求解算法，你同时需要BoxSearch可执行文件和插件DLL。两者必须放在相同目录下。插件DLL遵循Sokoban++的&quot;Solver SDK&quot;，可以从 <a href="http://www.joriswit.nl/sokoban/" target="_blank">http://www.joriswit.nl/sokoban/</a> 下载。</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;支持插件模式的游戏有：</p>
 <ul>
   <li class="NoIndent">Sokoban YASC&nbsp;&nbsp;&nbsp;&nbsp;</li>
   <li class="NoIndent">Sokoban++ </li>
 </ul>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;����������Ϸ����Ӣ�����������ǵ���ַ�뿴����ġ�������ӡ���ϣ���и����������Ϸ֧�֣�</p>
-<p align="left" class="STYLE4">2007.1.14: 5.1beta2����ɡ�</p>
-<p align="left" class="Normal">��չ���Ż��㷨A���������������ʱ��Ĺ��ܡ�</p>
-<p align="left" class="STYLE4">2006.11.27: 5.1beta����ɡ�</p>
-<p align="left" class="Normal">�������µĽ���Ż��㷨��Ч��������ǿ��</p>
-<p align="left"><strong><font color="#008000">2006.8.28: 5.0����ɡ�</font></strong></p>
-<p align="left" class="Normal">֧�֡����ģʽ�������������ٶȣ�һЩ�ؿ�������ٶ���������������Խ���ܶ���ǰ�汾�޷�����Ĺؿ���</p>
-<p align="left"><font color="#008000">2004.<span lang="en-us">12</span>.<span lang="en-us">5</span>: 4.1.<span lang="en-us">3</span>����ɡ�</font></p>
-<p>&nbsp;&nbsp;&nbsp; <font color="#008000">֧�����60��60�Ĺؿ����ؿ���ʾ���������͹�����</font></p>
-<p><font color="#008000">2004.8.22: 4.1.2����ɡ�</font></p>                       
-<p>&nbsp;&nbsp;&nbsp; <font color="#008000">������Ż��������п����趨�ӵڼ�����ʼ�Ż���</font></p>
-<p><font color="#008000">2004.4.10: 4.1����ɡ�</font></p>                       
-<p>&nbsp;&nbsp;&nbsp; <font color="#008000">���õ�֧��LrUd��ʽ�Ľ�����ӡ�����Ż������ܡ�</font></p>
-<p class="NoIndent"><font color="#008000">2003.5.24: 4.0����ɡ�</font></p>                        
-<p class="Normal"><font color="#008000"> ���롰�������ơ���顣�������������ģʽ�������ƶ��������ƶ�����α�֤�����ƶ��������ƶ�����α�֤�����ƶ���������μ�readme�ļ���</font></p>                        
-<p class="NoIndent"><font color="#008000">2002.3.31: 3.1����ɡ�</font></p>                          
-<p class="Normal" style="line-height: 150%"><font color="#008000"> ����ѡ�����������Ŀ��ꡱ���׶����������е�һ����������ܵ�Ӧ��֮һ�ǣ����Խ������һ���ؿ�����ΰ������Ƶ���Ŀ����������������������ؿ����ؿ��༭������Ϊ�Ķ���������һЩ��������readme�ļ��й��ڼ��㸴����������һЩ����Ĳ���ȷ�ı�������лcompsci��genny��λ���ѵ����İ�����</font></p>                       
-<p><font color="#008000">2002.2.10: 3.0���԰���ɡ�</font></p>
-<p class="Normal"><font color="#008000">�����ˡ�Ŀ��ꡱ���ܡ�</font></p>
-<p><font color="#008000">2002.2.2:&nbsp; 2.0���԰���ɡ�</font></p>
-<p class="Normal"><font color="#008000">�����ڽ��������������ˡ�����㷨������ǿ��</font></p>
-<p><font color="#008000">2002.1.19: �����ӹ���1.0��ʽ�淢����</font></p>
-<p class="Normal"><font color="#008000">������һ�����Ϊ�ı���ʽ�ļ����Ĺ��ܡ�</font></p>
-<p><font color="#008000">2002.1: �����ӹ���1.0���԰档</font></p>                            
-<p>��</p>
-<p>������ӣ�</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;以上两款游戏都是英文软件，它们的网址请看后面的“相关链接”。希望有更多的中文游戏支持！</p>
+<p align="left" class="STYLE4">2007.1.14: 5.1beta2版完成。</p>
+<p align="left" class="Normal">扩展了优化算法A。增加了限制求解时间的功能。</p>
+<p align="left" class="STYLE4">2006.11.27: 5.1beta版完成。</p>
+<p align="left" class="Normal">增加了新的解答优化算法，效果显著增强！</p>
+<p align="left"><strong><font color="#008000">2006.8.28: 5.0版完成。</font></strong></p>
+<p align="left" class="Normal">支持“插件模式”。提高了求解速度，一些关卡的求解速度提高了数倍。可以解出很多先前版本无法解出的关卡。</p>
+<p align="left"><font color="#008000">2004.<span lang="en-us">12</span>.<span lang="en-us">5</span>: 4.1.<span lang="en-us">3</span>版完成。</font></p>
+<p>&nbsp;&nbsp;&nbsp; <font color="#008000">支持最大60×60的关卡。关卡显示可以伸缩和滚动。</font></p>
+<p><font color="#008000">2004.8.22: 4.1.2版完成。</font></p>                       
+<p>&nbsp;&nbsp;&nbsp; <font color="#008000">“解答优化”功能中可以设定从第几步开始优化。</font></p>
+<p><font color="#008000">2004.4.10: 4.1版完成。</font></p>                       
+<p>&nbsp;&nbsp;&nbsp; <font color="#008000">更好地支持LrUd格式的解答。增加“解答优化”功能。</font></p>
+<p class="NoIndent"><font color="#008000">2003.5.24: 4.0版完成。</font></p>                        
+<p class="Normal"><font color="#008000"> 加入“容量限制”检查。增加了三种求解模式：最优推动、最优推动且其次保证最优移动、最优移动且其次保证最优推动。具体请参见readme文件。</font></p>                        
+<p class="NoIndent"><font color="#008000">2002.3.31: 3.1版完成。</font></p>                          
+<p class="Normal" style="line-height: 150%"><font color="#008000"> 增加选项可以跳过“目标宏”两阶段搜索的其中的一个。这个功能的应用之一是：可以仅仅求解一个关卡中如何把箱子推到“目标区”，而不必求解整个关卡。关卡编辑功能略为改动，更方便一些。修正了readme文件中关于计算复杂性理论中一些概念的不精确的表述，感谢compsci和genny两位网友的热心帮助。</font></p>                       
+<p><font color="#008000">2002.2.10: 3.0测试版完成。</font></p>
+<p class="Normal"><font color="#008000">增加了“目标宏”功能。</font></p>
+<p><font color="#008000">2002.2.2:&nbsp; 2.0测试版完成。</font></p>
+<p class="Normal"><font color="#008000">可以在界面上试推箱子了。求解算法略有增强。</font></p>
+<p><font color="#008000">2002.1.19: 推箱子工具1.0正式版发布。</font></p>
+<p class="Normal"><font color="#008000">增加了一项“保存为文本格式文件”的功能。</font></p>
+<p><font color="#008000">2002.1: 推箱子工具1.0测试版。</font></p>                            
+<p>　</p>
+<p>相关链接：</p>
 <table width="98%" border="0" cellspacing="20">
   <tr>
-    <td><a href="http://bbs.mf8.com.cn/forumdisplay.php?fid=57" target="_blank">ħ���ɵ���������̳</a></td>
-    <td>�й����ӽ���ֳ�û�ĵط���ÿ����һ�ر�����</td>
+    <td><a href="http://bbs.mf8.com.cn/forumdisplay.php?fid=57" target="_blank">魔方吧的推箱子论坛</a></td>
+    <td>中国箱子界高手出没的地方，每月有一关比赛。</td>
   </tr>
   <tr>
-    <td width="27%"><a target="_blank" href="http://www.supersoko.com/">SuperSoko(ԭ���Ϸ�������</a>)</td>
-    <td width="73%">ǿ���Ƽ� ��������õ�������������Ϸ���������ģ��й����ӽ���ֵľۼ��ء�(��ϧ���ѹر�)</td>
+    <td width="27%"><a target="_blank" href="http://www.supersoko.com/">SuperSoko(原名老封推箱子</a>)</td>
+    <td width="73%">强烈推荐 ，天下最好的中文推箱子游戏，（曾经的）中国箱子界高手的聚集地。(可惜现已关闭)</td>
   </tr>
   <tr>
     <td><a href="http://sourceforge.net/projects/sokobanyasc" target="_blank">Sokoban YASC</a></td>
-    <td>��õĹ�����������Ϸ��֧���������������ҳ��Ϊ���򿪷��߷���ģ���ͨ��ҽ��鵽���ڵ���������վ�������ء�</td>
+    <td>最好的国外推箱子游戏，支持求解插件。它的主页是为程序开发者服务的，普通玩家建议到国内的软件下载站搜索下载。</td>
   </tr>
   <tr>
-    <td><a target="_blank" href="http://www.erimsever.com/sokoban.htm">erim sever's ����������ҳ</a></td>
-    <td>����������ҵ��������е��йزֿⷬ����Ϣ��Ӣ�ģ���</td>
+    <td><a target="_blank" href="http://www.erimsever.com/sokoban.htm">erim sever's 的推箱子主页</a></td>
+    <td>在这你可以找到几乎所有的有关仓库番的信息（英文）。</td>
   </tr>
   <tr>
     <td><a href="http://sokobanwiki.pytalhost.de" target="_blank">Sokoban Wiki</a> </td>
-    <td>���ڲֿⷬ��Wiki��������һƪ��������֪����������Ϸ�Ĺ������˼����꾡�ıȽϡ���Ӣ�ģ�</td>
+    <td>关于仓库番的Wiki，其中有一篇对世界上知名的推箱游戏的功能做了极其详尽的比较。（英文）</td>
   </tr>
   <tr>
-    <td><a target="_blank" href="http://www.ic-net.or.jp/home/takaken/so/soko/index.html">takaken�Ĳֿⷬ������</a></td>
-    <td>�����͹ؿ���������ǿ�ĳ������ģ�Ӣ�ģ�</td>
+    <td><a target="_blank" href="http://www.ic-net.or.jp/home/takaken/so/soko/index.html">takaken的仓库番求解程序</a></td>
+    <td>求解大型关卡世界上最强的程序（日文，英文）</td>
   </tr>
   <tr>
     <td><a href="http://www.joriswit.nl/sokoban" target="_blank">Sokoban++</a></td>
-    <td>������ı�׼�ƶ��ߡ�</td>
+    <td>求解插件的标准制定者。</td>
   </tr>
   <tr>
     <td><a target="_blank" href="http://www.cs.ualberta.ca/~games/Sokoban/">Andreas 
-Junghanns���������о�</a></td>
-    <td>���������������űض���Ӣ�ģ�</td>
+Junghanns的求解程序研究</a></td>
+    <td>高质量求解程序入门必读（英文）</td>
   </tr>
   <tr>
-    <td><a target="_blank" href="http://skyfire.dns0755.net/newweb/list.asp?id=181">��٩���������о�</a></td>
-    <td>�ܲ��������Ųο����£����ģ�</td>
+    <td><a target="_blank" href="http://skyfire.dns0755.net/newweb/list.asp?id=181">老侃的求解程序研究</a></td>
+    <td>很不错的入门参考文章（中文）</td>
   </tr>
   <tr>
-    <td><a target="_blank" href="http://free.activeclub.net/script/forum/view.asp?article_id=19737608&board_id=454389">���ܡ��ݺ�������</a></td>
-    <td><span style="line-height: 150%">����������У��ҽ�����һ��ʵ���ѶȲ��ߡ������ܴ�������жϷ����ҵĳ����л����������ָ����ӵ������жϣ�Ҫд����Ļ�������ѧ����������������ӻ��ܶ�ͼ�������о�������д�����пհɡ���</span></td>
+    <td><a target="_blank" href="http://free.activeclub.net/script/forum/view.asp?article_id=19737608&board_id=454389">介绍“纵横死锁”</a></td>
+    <td><span style="line-height: 150%">在这个帖子中，我介绍了一个实现难度不高、威力很大的死锁判断法。我的程序中还有其他几种更复杂的死锁判断，要写清楚的话得用数学化的语言描述，外加画很多图，当成研究论文来写。等有空吧……</span></td>
   </tr>
   <tr>
-    <td><a href="SokoProve1.html" target="_blank">����֤������������Ϸ���貽���ɴ�ָ����</a></td>
-    <td>��ѧ�ͼ������۵İ����߿��Թ�ע��ʵ���ϣ���L��n��Ϊ���һ��������Ϊn�Ĺؿ�������ƶ����������ֵ�����У�  L(n) �� 2<sup>n/74</sup>��  L(2n+1) �� (2n+1) (2n)! /(n!)<sup>2</sup>  </td>
+    <td><a href="SokoProve1.html" target="_blank">经典证明：推箱子游戏所需步数可达指数级</a></td>
+    <td>数学和计算理论的爱好者可以关注。实际上，设L（n）为解决一个格子数为n的关卡所需的移动步数的最大值，则有：  L(n) ≥ 2<sup>n/74</sup>，  L(2n+1) ≤ (2n+1) (2n)! /(n!)<sup>2</sup>  </td>
   </tr>
 </table>
 <p>&nbsp;</p>

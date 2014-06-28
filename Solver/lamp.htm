@@ -1,8 +1,8 @@
 <html>
 
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
-<title>���</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>点灯</title>
 <base target="_self">
 <style type="text/css">
 <!--
@@ -13,44 +13,44 @@
 
 <body bgcolor="#FFD39C">
 
-<p>Ҳ�нС��ذ���Ϸ���ġ�</p>
-<p><a href="../CnSoft/Floor.exe">����׿����Ϸ��������</a></p>
+<p>也有叫“地板游戏”的。</p>
+<p><a href="../CnSoft/Floor.exe">张历卓的游戏和求解程序</a></p>
 <p>&nbsp;</p>
-<p>mathe����ѧ���ת����<a href="http://blog.csdn.net/mathe/archive/2006/08/30/1143634.aspx" target="_blank">mathe��BLOG</a>����������С�޸ģ���벿����ȥ����</p>
-<p>��һ��5*6�ĵ��ݹ��ɵľ��󣬵ƵĿ��ع��������������ı�ĳյ�Ƶ�״̬ʱ����յ�Ƶ������������ڵĵƵ�״̬Ҳ��֮�ı䡣���磺<BR>
+<p>mathe的数学解答，转载自<a href="http://blog.csdn.net/mathe/archive/2006/08/30/1143634.aspx" target="_blank">mathe的BLOG</a>（文字上有小修改，后半部分略去。）</p>
+<p>有一个5*6的灯泡构成的矩阵，灯的开关规则是这样：当改变某盏灯的状态时，这盏灯的上下左右相邻的灯的状态也随之改变。例如：<BR>
   0 1 1 0 1   0<BR>
   1 0 0 1 1 1<BR>
   0 0 1 0 0 1<BR>
   1 0 0 1 0 1<BR>
 0 1 1 1 0 0</p>
-<p>������2��3�еĿ���ʱ��״̬��Ϊ��<BR>
+<p>当按下2行3列的开关时，状态变为：<BR>
   0 1 0 0 1 0<BR>
   1 1 1 0 1 1<BR>
   0 0 0 0 0 1<BR>
   1 0 0 1 0   1<BR>
   0 1 1 1 0 0</p>
-<p class="NoIndent">��Ϸ��Ŀ���Ƕ�����������������ʼ̬��ͨ��һϵ�ж����ر����еĵơ�<BR>
-  ����ע�⵽���ǣ�<BR>
-  1.�����ص�˳���޹ؽ�Ҫ��<BR>
-  2.���ĳ�����ذ��������Σ���ô���൱��ȡ���˵�һ�εĲ�����Ҳ����˵û�п�����Ҫ������1�Ρ�</p>
-<p class="NoIndent">���������ǣ����ڸ����ĳ�ʼ״̬�������Ҫ����Щ�����������Ϸ��</p>
-<p class="NoIndent">������ľ��󿴳�һ��m*n������X=(x1,x2,...,x(m*n))������λ��k�ϵĿ��أ������仯���5��λ�õĿ��أ���Ӧһ������C(k)=(0,0,...,1,0,....,1,...,0)�����п���״̬�ı��λ��Ϊ1������״̬���ı��λ��Ϊ0��<BR>
-  ���ڳ�ʼ����X=(x1,x2,...,x(m*n)),ʹ���˿���C(k)��״̬����<BR>
+<p class="NoIndent">游戏的目的是对于任意给定的亮灭初始态，通过一系列动作关闭所有的灯。<BR>
+  可以注意到的是：<BR>
+  1.按开关的顺序无关紧要。<BR>
+  2.如果某个开关按下了两次，那么就相当于取消了第一次的操作，也就是说没有开关需要按超过1次。</p>
+<p class="NoIndent">现在问题是：对于给定的初始状态，求出需要按哪些开关来完成游戏。</p>
+<p class="NoIndent">把上面的矩阵看成一个m*n的向量X=(x1,x2,...,x(m*n))。对于位置k上的开关，它将变化最多5个位置的开关，对应一个向量C(k)=(0,0,...,1,0,....,1,...,0)，其中开关状态改变的位置为1，开关状态不改变的位置为0。<BR>
+  对于初始向量X=(x1,x2,...,x(m*n)),使用了开关C(k)后，状态会变成<BR>
 X+C(k)   (mod 2)</p>
-<p class="NoIndent">���ԶԳ�ʼ����X,������Ҫѡ��һϵ�е�k1,k2,...,ksʹ��<BR>
+<p class="NoIndent">所以对初始向量X,我们需要选择一系列的k1,k2,...,ks使得<BR>
   X+C(k1)+C(k2)+....+C(ks) (mod   2)=O=(0,0,0,...,0)<BR>
-  ���ǿ���ͬ������һ��0,1����Y,ʹ�ã����λ��k������k1,k2,...ks�У���ôY<BR>
-  ��λ��k��ֵ��1����Ȼ��0�����������ǾͿ��Խ����湫ʽд�ɾ�����ʽ<BR>
+  我们可以同样构造一个0,1向量Y,使得：如果位置k出现在k1,k2,...ks中，那么Y<BR>
+  在位置k的值是1，不然是0。这样，我们就可以将上面公式写成矩阵形式<BR>
   X+Y*C   (mod 2)=O<BR>
-  ����C=(C(1)' C(2)' ....   C(m*n)')'<BR>
-  Ҳ����C����m*n�����������ɵľ��󣬵�k�о�������C(k)��<BR>
-  �ڶ������ϣ��Ӻͼ�����ͬ�ģ�Ҳ��������ķ��̵ȼ���<BR>
+  其中C=(C(1)' C(2)' ....   C(m*n)')'<BR>
+  也就是C是由m*n个行向量构成的矩阵，第k行就是向量C(k)。<BR>
+  在二阶域上，加和减是相同的，也就是上面的方程等价于<BR>
   Y*C   (mod 2)=X<BR>
-  ����C,X��֪����Y��<BR>
-  ����(mod 2)������һ���� �����ڳ˳��Ӽ���գ��Ӽ���mod   2�Ӽ������������ʣ������ʣ����������ǿ���ֱ���ڶ��������ø�˹��Ԫ����⣨ע��Ӽ���mod   2�ģ���Ӧ������ϵ�������㣩��<BR>
-  ���У����C���棬����Ψһ�ģ����C�����棬����ܲ����ڣ�Ҳ���ܲ�Ψһ��</p>
-<p><span class="NoIndent">����ʹ��׷�����,ʱ�临�Ӷȿ���ֻ��O(n^3)��<BR>
-���������ĳ����ʱ�临�Ӷ�ΪO(n^4),������Ϊ����ͬϡ�����ĳ˷�û���Ż�.</span></p>
+  其中C,X已知，求Y。<BR>
+  由于(mod 2)运算是一个域 （关于乘除加减封闭，加减是mod   2加减，还满足结合率，交换率），所以我们可以直接在二阶域上用高斯消元法求解（注意加减是mod   2的，对应计算机上的异或运算）。<BR>
+  其中，如果C可逆，解是唯一的，如果C不可逆，解可能不存在，也可能不唯一。</p>
+<p><span class="NoIndent">可以使用追逐法求解,时间复杂度可以只有O(n^3)。<BR>
+下面贴出的程序的时间复杂度为O(n^4),这是因为其中同稀疏矩阵的乘法没有优化.</span></p>
 <p>#include &lt;stdio.h&gt;<br>
 #include &lt;stdlib.h&gt;</p>
 <p>typedef char ** MATRIX;<br>
@@ -351,7 +351,7 @@ X+C(k)   (mod 2)</p>
   return 0;<br>
   }<br>
 </p>
-<p>  ��������,�һ��ҵ�һ�������˵�һ��֤��:�����ʼ���еĵƶ��ǿ���,��ô��Ȼ����һ�ַ��������еĵƹر�.���֤���õ�����֪ʶ,ֻ�����ö���Ӧ����Ӧ����ʵ�����ϵ�,�������������ϲ�֪���Ƿ���ȷ:<BR>
+<p>  在网络上,我还找到一个俄国人的一个证明:如果开始所有的灯都是开的,那么必然存在一种方案将所有的灯关闭.这个证明用到代数知识,只是所用定理应该是应用在实数域上的,运用在有限域上不知道是否正确:<BR>
 </p>
 <p>Puzzle 2: for this problem, we are giving up the detailed information about   how the lights are connected. We are left knowing only that the connections are   reflexive and symmetric, and that our task is to go from all lights ON to all   lights OFF. Lossers gives a short explanation of how to see that this is so.   First, we define the obvious matrix A with 1's indicating which switches control   which lights. The matrix is symmetric and has 1's on its diagonal. </p>
 <p>Now it's equivalent to show that there is some strategy x of button pushing   that can go from all lights OFF to all lights ON. But that's just asking if   there is a vector x such that </p>
@@ -371,21 +371,21 @@ X+C(k)   (mod 2)</p>
   Now Ai,i = 1, because the   light-switch relationship is reflexive (assumption 1), and di = 1 too, so in the   sum, we can replace Ai,i by di. Moreover, we know that xi2=xi, because xi is   either 0 or 1. Therefore, we now have <BR>
   Sum (1 &lt;= i &lt;= N) xi * di = 0 </p>
 <p>Hence x is in the perpendicular space of d. This means d is in the column   space of A, so a button strategy exists that turns a set of "off" lights all   "on", and the same strategy will turn a set of "on" lights all "off". </p>
-<p>�����������,������ǰ����һ���㷨,���������󿴳�һ������,��ôM=N*N�ĵƾ�Ҫ��һ��M*M���Է�����,�㷨���Ӷ�Ҫ��ܶ�:�����ԡ���<BR>
-  ��</p>
-<p>��٩�����������ת����<a target="_blank" href="http://skyfire.dns0755.net/newweb/list.asp?id=349"> ��٩��һվ</a></p>
-<p style="line-height: 150%"><font class="b1">�����Ϸ<br>
+<p>关于这个问题,很早以前还有一种算法,将整个矩阵看成一个向量,那么M=N*N的灯就要解一个M*M线性方程组,算法复杂度要大很多:（后略。）<BR>
+  　</p>
+<p>老侃的搜索法解答，转载自<a target="_blank" href="http://skyfire.dns0755.net/newweb/list.asp?id=349"> 老侃第一站</a></p>
+<p style="line-height: 150%"><font class="b1">点灯游戏<br>
 &nbsp;&nbsp;&nbsp; 
-��飺��Ϸ������һ��10*10��100�����������ÿһ���������һյ�ƣ��ڸı�ĳһյ�Ƶ�״̬ʱ��ͬʱ�ı������������ҵ���յ�Ƶ�״̬����ʼʱ100յ�ƶ���Ϩ��״̬��Ҫ��ͨ��һ���Ĳ��������еĵƶ��򿪡�<br>
+简介：游戏场景是一个10*10共100个方格的网格，每一个方格代表一盏灯，在改变某一盏灯的状态时会同时改变相邻上下左右的四盏灯的状态。初始时100盏灯都是熄灭状态，要求通过一定的操作将所有的灯都打开。<br>
 &nbsp;&nbsp;&nbsp; 
-����������ÿյ�������������ҵĵƹ���������ֻ��һ���֡���������������һ���֡�������������һ�ε�Ʋ����൱�ڶ��������ֵ�߼�ȡ��������ȡ����ص�ԭֵ�����ԣ���Щ���롰�����������ĵ�ֻ�����һ�Σ����ؿ��ǵ��ε�������߼����������㽻���ɣ�������Ϸ���̺͵�ƵĴ����޹ء����԰���ĳ���ض�����(��������ң����ϵ���)����̽ĳյ���Ƿ�Ӧ�õ����������ĳһյ��ʱ��������Ϸ��Ѿ������ĵƣ���Ϊ����������̽������<br>
-�Ѿ��������ٽ���յ�Ƶ����ˡ������������̽�ĵ����Ϸ��ĵ��Ѿ�����ģ���ô�Ժ�������ζ����ܵ�����յ�ơ�������Щ���Ӧ���л��ݡ�<br>
-��</font></p>
+分析：由于每盏灯与其上下左右的灯关联，所以只能一部分“主动”点亮，另一部分“被动”点亮，一次点灯操作相当于对五个网格值逻辑取反，两次取反会回到原值，所以，那些必须“主动”点亮的灯只需点亮一次，不必考虑点多次的情况。逻辑反运算满足交换律，所以游戏过程和点灯的次序无关。可以按照某个特定次序(比如从左到右，从上到下)来试探某盏灯是否应该点亮。这里，点某一盏灯时不能灭掉上方已经点亮的灯，因为按照这种试探方法，<br>
+已经不可能再将那盏灯点亮了。而如果正在试探的灯左上方的灯已经是灭的，那么以后无论如何都不能点亮那盏灯。遇到这些情况应进行回溯。<br>
+　</font></p>
 <p><font class="b1">#include &lt;stdio.h&gt;<br>
 #include &lt;string.h&gt;const long&nbsp; SIZE=10;<br>
-char&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Lamp[SIZE + 2][SIZE + 2];&nbsp;&nbsp; //���ܸ���һ���Ǳ߽�<br>
+char&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Lamp[SIZE + 2][SIZE + 2];&nbsp;&nbsp; //四周各有一格是边界<br>
 long&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; StepX[SIZE * SIZE], StepY[SIZE * SIZE];<br>
-long&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Step;//��ƣ����������ֵȡ�������Ͻ���(1,1)<br>
+long&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Step;//点灯，对五个网格值取反，左上角是(1,1)<br>
 inline void LampSw(long x, long y)<br>
 {<br>
 &nbsp;&nbsp;&nbsp; Lamp[x][y]=!Lamp[x][y];<br>
@@ -394,7 +394,7 @@ inline void LampSw(long x, long y)<br>
 &nbsp;&nbsp;&nbsp; Lamp[x][y + 1]=!Lamp[x][y + 1];<br>
 &nbsp;&nbsp;&nbsp; Lamp[x][y - 1]=!Lamp[x][y - 1];<br>
 }/*<br>
-���״̬���Ƿ������<br>
+检查状态，是否已完成<br>
 */<br>
 bool CheckOK(void)<br>
 {<br>
@@ -409,7 +409,7 @@ bool CheckOK(void)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
 &nbsp;&nbsp;&nbsp; }<br>
 &nbsp;&nbsp;&nbsp; return true;<br>
-}//��̽�����ݣ����Ͻ���(1,1)<br>
+}//试探，回溯，左上角是(1,1)<br>
 void Try(long x, long y)<br>
 {<br>
 &nbsp;&nbsp;&nbsp; long&nbsp;&nbsp;&nbsp; xx, yy;&nbsp;&nbsp;&nbsp; LampSw(x, y);<br>
@@ -426,12 +426,12 @@ void Try(long x, long y)<br>
 &nbsp;&nbsp;&nbsp; }<br>
 &nbsp;&nbsp;&nbsp; else<br>
 &nbsp;&nbsp;&nbsp; {<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; for(long s=(y - 1) * SIZE + x; s &lt; SIZE * SIZE; s++)&nbsp;&nbsp; //��һ�����Ե㣬<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; for(long s=(y - 1) * SIZE + x; s &lt; SIZE * SIZE; s++)&nbsp;&nbsp; //第一个尝试点，<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; xx=s % SIZE + 1;<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; yy=s / SIZE + 1;<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if(Lamp[xx - 1][yy - 1] == 1 || xx == 1 || yy == 
-1)//������Ͻ���1�����ԣ�ע������û���õ����Ϸ���ֵ���жϣ��Ҿ���û�б�Ҫ<br>
+1)//如果左上角是1，则尝试，注意这里没有用到正上方的值做判断，我觉得没有必要<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Try(xx, yy);<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>

@@ -1,8 +1,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
-<title>�ޱ����ĵ�</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
 <style type="text/css">
 <!--
 .STYLE3 {font-size: 18px}
@@ -11,23 +11,23 @@
 </head>
 
 <body>
-<p class="STYLE3">����֤������������Ϸ���貽���ɴ�ָ����</p>
-<p class="STYLE3">  ����<a href="http://www.matrix67.com">matrix67.com</a></p>
+<p class="STYLE3">经典证明：推箱子游戏所需步数可达指数级</p>
+<p class="STYLE3">  出自<a href="http://www.matrix67.com">matrix67.com</a></p>
 <p class="STYLE3"><br />
-  ������дһ�����ʱ�ַ�����һ��<a href="http://www.stetson.edu/~efriedma/">Erich Friedman</a>��<a href="http://www.stetson.edu/~efriedma/mathmagic/archive.html">Math Magic</a>��������һ��<a href="http://www.stetson.edu/~efriedma/mathmagic/0300.html">��Ȥ�Ķ���</a>�������ش�СΪn����������Ϸ����Ҫ�����ٲ��������Ƕ��١������������˵������������Ҳ��ָ�����ġ�</p>
-<p class="STYLE3"> ���ȣ��������������ù����е�һ��������Ԫ��</p>
+  今天在写一个稿件时又翻阅了一下<a href="http://www.stetson.edu/~efriedma/">Erich Friedman</a>的<a href="http://www.stetson.edu/~efriedma/mathmagic/archive.html">Math Magic</a>，发现了一个<a href="http://www.stetson.edu/~efriedma/mathmagic/0300.html">有趣的东西</a>——场地大小为n的推箱子游戏所需要的最少步数最坏情况是多少。下面这个构造说明，最坏情况至少也是指数级的。</p>
+<p class="STYLE3"> 首先，让我们来看看该构造中的一个基本单元：</p>
 <p class="STYLE3"><img src="SokoProve1_files/200907051.png" width="188" height="284" /> </p>
-<p class="STYLE3"> ��������й���6�����ӣ������Ƕ��Ѿ���Ŀ��λ�����ˡ����ѿ�����<br />
-  1. �����������������֮�⣬��ֻ���ܴ����Ͻǵĳ���ڽ�������򣬴������ط���ȥ���ᵼ������<br />
-  2. �����Ͻǽ������ֻ�������ߣ�����1��������ߵĻ�ֱ�ӵ�������<br />
-  3. �����ͨ��2��ǰ��3����������3�����Ͻǵĳ��ڳ�ȥ�ˣ���2�����������ӽ���Զ�޷��ص�ԭλ��������ԭ·���أ�<br />
-  4. �����ͨ��2��ǰ��3��������3����ߵ��Ǹ���������һ���ٷ���2���������´����ٴ����Ͻǽ��������ʱ�����ֱ�Ӿ���3�������Ͻǳ�ȥ<br />
-  5. �����ֻ�ܴ�4���뿪<br />
+<p class="STYLE3"> 这个构造中共有6个箱子，且它们都已经在目的位置上了。不难看出：<br />
+  1. 假如你人在这个区域之外，你只可能从右上角的出入口进入该区域，从其它地方进去都会导致死局<br />
+  2. 从右上角进入后你只能往下走，进入1区；走左边的话直接导致死局<br />
+  3. 你可以通过2区前往3区，但若从3区左上角的出口出去了，则2区动过的箱子将永远无法回到原位（除非你原路返回）<br />
+  4. 你可以通过2区前往3区，并把3区左边的那个箱子左移一格，再返回2区；这样下次你再从右上角进入该区域时便可以直接经过3区从左上角出去<br />
+  5. 最后你只能从4区离开<br />
 </p>
 <p class="STYLE3"><img src="SokoProve1_files/200907052.png" width="699" height="330" /> <br />
     <br />
 </p>
-<p class="STYLE3"> ��n�������Ĺ��촮����������������ֱ����A_1, A_2, ..., A_n������A_n��߸���һ��ֻ�������Ļ��غ�һ����Ҫ�ƶ�һ�µ����ӡ���ˣ�����ͼһ����6n+2�����ӣ�ֻ��һ�����Ӳ���Ŀ��λ�á����������Ǵ�A_1�����ұ�һֱɱ��A_n������ߣ����ұ�֤��ʱA_1��A_n��������������ԭλ�ϣ�Ȼ�����A_n�����Ͻ��ǿ鸽�����򣬰��Ǹ������ƽ�ȥ��<br />
-  ���ѿ�������������Ψһ����Ǵ�A_1�����Ͻǽ�ȥ������A_1��1����2������A_1���Ͻǵ��Ǹ�����������һ��Ȼ���A_1�·��������ٴδ�A_1���Ͻǽ��룬ֱ�����в������Ͻǳ�ȥ������A_2�����Ͻǣ�Ȼ������A_2��1����2������A_2���Ͻǵ�����������һ���ٴ�A_2�¶˳�������ע�⵽����ʱA_1��״̬�ֱ���ԭ�ˣ������޷�ֱ�Ӵ�A_1���Ͻǳ�ȥ�ˣ�Ϊ�˽���A_3���㲻�ò����ظ��ղ��������飬��A_1���Ͻǵ��������ƣ���ȥ֮���ٽ���һ�顣������A_3��A_1��A_2��״̬�ֶ�����ԭ�ˣ��������ֲ��ò��ݹ�ش���A_1��A_2����ˣ�������ֵ��ƶ��Ĳ�����Ȼ��ָ�����ġ�</p>
+<p class="STYLE3"> 把n个这样的构造串联起来，从右至左分别记作A_1, A_2, ..., A_n。再在A_n左边附加一个只进不出的机关和一个需要移动一下的箱子。因此，整个图一共有6n+2个箱子，只有一个箱子不在目标位置。你的任务就是从A_1的最右边一直杀到A_n的最左边，并且保证此时A_1到A_n的所有箱子仍在原位上；然后进入A_n的左上角那块附加区域，把那个箱子推进去。<br />
+  不难看出，这个构造的唯一解便是从A_1的右上角进去，经过A_1的1区和2区，把A_1左上角的那个箱子向左推一格，然后从A_1下方出来；再次从A_1右上角进入，直接左行并从左上角出去，来到A_2的右上角；然后绕行A_2的1区和2区，把A_2左上角的箱子向左推一格，再从A_2下端出来。但注意到，此时A_1的状态又被还原了，你又无法直接从A_1左上角出去了；为了进入A_3，你不得不又重复刚才做的事情，把A_1左上角的箱子左移，出去之后再进来一遍。而进入A_3后，A_1和A_2的状态又都被还原了，于是你又不得不递归地处理A_1和A_2。因此，整个棋局的移动的步数显然是指数级的。</p>
 </body>
 </html>
